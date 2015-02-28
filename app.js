@@ -35,6 +35,7 @@ app.locals({
 app.get('/', routes.site.index);
 
 app.get('/users', routes.users.list);
+app.get('/generate', routes.users.generate);
 app.post('/users', routes.users.create);
 app.get('/users/:id', routes.users.show);
 app.post('/users/:id', routes.users.edit);

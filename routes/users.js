@@ -3,6 +3,14 @@
 
 var User = require('../models/user');
 
+exports.generate = function(req, res, next) {
+    console.time("generate1MUsers");
+    User.generateMillion(function(err, users) {
+        console.timeEnd("generate1MUsers");
+        res.render('generateSuccess');
+    });
+}
+
 /**
  * GET /users
  */

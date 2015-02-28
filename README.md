@@ -1,3 +1,7 @@
+# Alex: Attribution
+Sorry - this should have really been a fork of the  https://github.com/lexaux/neo4j-performance-uglytest.
+I didn't plan much use for it besides simple ping, and then the whole thing emerged.
+
 # Node-Neo4j Template
 
 This is a template [Node.js][] + [Neo4j][] app, using the

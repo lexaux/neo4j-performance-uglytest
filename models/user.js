@@ -2,10 +2,13 @@
 // User model logic.
 
 var neo4j = require('neo4j');
+var faker = require('faker');
+var async = require('async');
+
 var db = new neo4j.GraphDatabase(
     process.env['NEO4J_URL'] ||
-    process.env['GRAPHENEDB_URL'] ||
-    'http://localhost:7474'
+        process.env['GRAPHENEDB_URL'] ||
+        'http://localhost:7474'
 );
 
 // private constructor:
@@ -19,7 +22,9 @@ var User = module.exports = function User(_node) {
 // public instance properties:
 
 Object.defineProperty(User.prototype, 'id', {
-    get: function () { return this._node.id; }
+    get: function () {
+        return this._node.id;
+    }
 });
 
 Object.defineProperty(User.prototype, 'name', {
@@ -173,3 +178,17 @@ User.create = function (data, callback) {
         callback(null, user);
     });
 };
+
+User.generateMillion = function (callback) {
+    var count = 1*1000*1000;
+    async.whilst(
+        function () {
+            return count > 0
+        },
+        function (cb) {
+            var x = count--;
+            User.create({nomer: x}, cb);
+        },
+        callback
+    );
+}
